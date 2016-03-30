@@ -23,14 +23,30 @@
 		        });
 		      });
 
-	    	myAppDB.factory('placeFactory',function ($http){
-	    		var places = [];
+	    	myAppDB.factory('tweetFactory',function ($http){
+	    		var tweets = [];
 	    		var factory = {};
+	    		
+	    		factory.getTweets = function(callback){
+	    			console.log("in get tweets factory")
+	    			$http.get('/tweets').success(function(output){
+	    				tweets = output
+	    				callback(tweets)
+	    			})
+	    		}  		
 	    		return factory;
 	    	}) 
 
-	    	myAppDB.controller('placesController', function($scope, placeFactory){
-	    	})
+	    	myAppDB.controller('tweetsController', function($scope, tweetFactory){
+	    		$scope.tweets = [];
+
+	    		$scope.findTweets = function(){
+	    			// console.log("in findtweets")
+	    			tweetFactory.getTweets(function(data){
+	    				$scope.tweets = data
+	    			})
+	    		}
+	   	 	})
 
 	    </script>
 	</head>
