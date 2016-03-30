@@ -1,4 +1,0 @@
-manage your apps under twitter devloper
-"create new app"
-Keys and Access Token
-Create my access token
