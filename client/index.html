@@ -7,6 +7,7 @@
 	     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtQqXjYkxVtjQgirqKLZkiL1WeqWXOrZc&libraries=places"></script>
 	    <script>
 
 	    	var myAppDB = angular.module('myApp', ['ngRoute']);
@@ -28,8 +29,8 @@
 	    		var factory = {};
 	    		
 	    		factory.getTweets = function(callback){
-	    			console.log("in get tweets factory")
 	    			$http.get('/tweets').success(function(output){
+	    				// console.log(output)
 	    				tweets = output
 	    				callback(tweets)
 	    			})
@@ -44,6 +45,8 @@
 	    			// console.log("in findtweets")
 	    			tweetFactory.getTweets(function(data){
 	    				$scope.tweets = data
+	    				console.log(data.twitter)
+	    				// console.log($scope.tweets.statuses[0].text)
 	    			})
 	    		}
 	   	 	})

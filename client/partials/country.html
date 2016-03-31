@@ -1,4 +1,10 @@
 <div ng-controller="tweetsController">
 	<h1>Places</h1>
 	<button type="submit" class="btn btn-primary" ng-Click = "findTweets()">Submit</button>
+	<div ng-repeat = "tweet in tweets.statuses">
+		<div ng-repeat = "x in tweet.entities.media">
+		<img src = "{{x.media_url}}">
+	</div>
+	<a href = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&name=cruise&key=AIzaSyCtQqXjYkxVtjQgirqKLZkiL1WeqWXOrZc'>
+
 </div>

@@ -1,3 +1,4 @@
 node_modules/
 config_twitter.js
+config_googleplaces.js
 twit.txt
