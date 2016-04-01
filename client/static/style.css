@@ -1,15 +1,44 @@
-#map{
+body{
+	/*background-color: #99ccff;*/
+	background-color:#ABC8E2;
 
-	margin-bottom: 10px
+
+}
+#partial{
+	padding-top: 10px;
+	color:  #375D81;
+}
+
+#title{
+	font-size: 4em;
+	
+	position: absolute;
+	padding-left: 20px;
+}
+#map{
+	position: absolute;
+	margin-left: 65%;
 }
 
 #banner img{
+	padding-top: 120px;
 	width: 100%;
-	height: 70%;
+	height: 80%;
 }
 
+.btn{
+	background-color: #375D81;
+	color:white;
+}
+
+.btn:hover{
+	background-color: #192452;
+	color: white;
+} 
+
 .box{
-	color:blue;
+	color:black;
+	font-size: 15;
 }
 
 
@@ -18,6 +47,26 @@
 	height: 200px;
 }
 
-#twitter{
-	margin-top: 10px
+
+#twit{
+	/*border:1px solid black;
+	border-radius: 20px;*/
+	padding: 10px;
+	color: #183152;
+}
+
+.username{
+	font-style: italic;
+}
+
+#places{
+	color: #183152;
+}
+
+#twitter h1{
+	color: #375D81;
+}
+
+#google h1{
+	color: #375D81;
 }

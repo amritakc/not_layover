@@ -1,10 +1,11 @@
-<div ng-controller="tweetsController">
-		<h1>Insert Map</h1> 
-
-	<div id = "map" class = "row">
-			<form class ="col-md-4">
+<div ng-controller="tweetsController" id = "partial">
+	
+	<h1 id = "title"class= "block">#NotJustALayover</h1>
+	
+	<div id = "map" class = "col-md-4 block">
+			<form id = "form">
 				<div class="form-group">
-				  <label for="place">Select list:</label>
+				  <label for="place">Select Airport:</label>
 				  <select class="form-control" id="sel1" ng-model = "newTweet.place">
 				    <option>JFK (New York City, USA)</option>
 				    <option>LHR (London, England)</option>
@@ -12,27 +13,41 @@
 				    <option>HND (Tokyo, Japan)</option>
 				  </select>
 				</div>
-			  <button type="submit" class="btn btn-primary" ng-Click = "addTweets()">Find</button>
+			  <button type="submit" class="btn" ng-Click = "addTweets()">Find</button>
 		</form>
 	</div>
 
-	<div id = "twitter" class = "box col-md-4">
-		<div ng-repeat = "x in tweets.twitter.statuses">
-			Tweets:
-			<p>{{x.text}}</p>
-			<div ng-repeat = "z in x.entities.media">
-				<img src = "{{z.media_url}}" class = "pic">
-			</div>
-		</div>
+	<div id = "banner">
+		<img src ='/static/njal.jpg'>
 	</div>
 
-	<div id = "google" class = "box col-md-offset-1 col-md-5">
-		<div ng-repeat = "x in tweets.google.results">
-			<div>
-				{{x.name}}
-			<div>
+	<div class = "container">
+
+		<div id = "twitter" class = "box col-md-4">
+			<h1 ng-if="tweets.twitter.statuses != undefined">What does twitter say?</h1>
+			<div ng-repeat = "x in tweets.twitter.statuses">
+				<div id = "twit">
+					
+					<div class = "username" ng-repeat = "h in x">
+						{{h.name}}
+					</div>
+					<p class = "tweet">{{x.text}}</p>
+				</div>
+				<div ng-repeat = "z in x.entities.media">
+					<p><img src = "{{z.media_url}}" class = "pic"></p>
+				</div>
+			</div>
 		</div>
+
+		<div id = "google" class = "box col-md-offset-1 col-md-5">
+			<h1 ng-if="tweets.google.results != undefined">Spots to check out:</h1>
+			<div ng-repeat = "x in tweets.google.results">
+				<div>
+					<li id = "places">{{x.name}}</li>
+				<div>
+			</div>
+		</div>
+
 	</div>
 
 </div>
-

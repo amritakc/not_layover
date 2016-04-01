@@ -47,8 +47,8 @@
 	    			console.log($scope.newTweet)
 	    			tweetFactory.getTweets($scope.newTweet, function(data){
 	    				$scope.tweets = data
-	    				// console.log(data)
-	    				console.log($scope.tweets.twitter.statuses[0].created_at)
+	    				console.log(data)
+	    				// console.log($scope.tweets.twitter.statuses[0].user)
 	    			})
 	    		}
 	   	 	})
@@ -56,12 +56,10 @@
 	    </script>
 	</head>
 	<body>
-		<div id = "banner">
-			<img src ='/static/njal.jpg'>
-		</div>
-		<div class = "container">
+		
+		
 			<div ng-view="">
         	</div>
-		</div>
+		
 	</body>
 </html>
