@@ -8,6 +8,7 @@
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtQqXjYkxVtjQgirqKLZkiL1WeqWXOrZc&libraries=places"></script>
+    	<link rel = 'stylesheet' type = 'text/css' href = 'static/style.css'>
 	    <script>
 
 	    	var myAppDB = angular.module('myApp', ['ngRoute']);
@@ -28,8 +29,9 @@
 	    		var tweets = [];
 	    		var factory = {};
 	    		
-	    		factory.getTweets = function(callback){
-	    			$http.get('/tweets').success(function(output){
+	    		factory.getTweets = function(tweet, callback){
+	    			console.log(tweet)
+	    			$http.post('/tweets', tweet).success(function(output){
 	    				// console.log(output)
 	    				tweets = output
 	    				callback(tweets)
@@ -41,12 +43,12 @@
 	    	myAppDB.controller('tweetsController', function($scope, tweetFactory){
 	    		$scope.tweets = [];
 
-	    		$scope.findTweets = function(){
-	    			// console.log("in findtweets")
-	    			tweetFactory.getTweets(function(data){
+	    		$scope.addTweets = function(data){
+	    			console.log($scope.newTweet)
+	    			tweetFactory.getTweets($scope.newTweet, function(data){
 	    				$scope.tweets = data
-	    				console.log(data.twitter)
-	    				// console.log($scope.tweets.statuses[0].text)
+	    				// console.log(data)
+	    				console.log($scope.tweets.twitter.statuses[0].created_at)
 	    			})
 	    		}
 	   	 	})
@@ -54,6 +56,9 @@
 	    </script>
 	</head>
 	<body>
+		<div id = "banner">
+			<img src ='/static/njal.jpg'>
+		</div>
 		<div class = "container">
 			<div ng-view="">
         	</div>

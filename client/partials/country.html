@@ -1,10 +1,38 @@
 <div ng-controller="tweetsController">
-	<h1>Places</h1>
-	<button type="submit" class="btn btn-primary" ng-Click = "findTweets()">Submit</button>
-	<div ng-repeat = "tweet in tweets.statuses">
-		<div ng-repeat = "x in tweet.entities.media">
-		<img src = "{{x.media_url}}">
+		<h1>Insert Map</h1> 
+
+	<div id = "map" class = "row">
+			<form class ="col-md-4">
+				<div class="form-group">
+				  <label for="place">Select list:</label>
+				  <select class="form-control" id="sel1" ng-model = "newTweet.place">
+				    <option>JFK (New York City, USA)</option>
+				    <option>LHR (London, England)</option>
+				    <option>DBX (Dubai, UAE)</option>
+				    <option>HND (Tokyo, Japan)</option>
+				  </select>
+				</div>
+			  <button type="submit" class="btn btn-primary" ng-Click = "addTweets()">Find</button>
+		</form>
 	</div>
-	<a href = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&name=cruise&key=AIzaSyCtQqXjYkxVtjQgirqKLZkiL1WeqWXOrZc'>
+
+	<div id = "twitter" class = "box col-md-4">
+		<div ng-repeat = "x in tweets.twitter.statuses">
+			Tweets:
+			<p>{{x.text}}</p>
+			<div ng-repeat = "z in x.entities.media">
+				<img src = "{{z.media_url}}" class = "pic">
+			</div>
+		</div>
+	</div>
+
+	<div id = "google" class = "box col-md-offset-1 col-md-5">
+		<div ng-repeat = "x in tweets.google.results">
+			<div>
+				{{x.name}}
+			<div>
+		</div>
+	</div>
 
 </div>
+

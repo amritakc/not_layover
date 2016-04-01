@@ -14,6 +14,27 @@ var config = require('../../config_googleplaces.js')
 module.exports = (function() {
  return {
    getTweet: function(req, res) {
+         
+         if(req.body.place =="JFK (New York City, USA)"){
+            var lat = 40.7484;
+            var lon = -73.9857;
+            var city = '%23NYC AND %23layover'
+         }
+         if(req.body.place =="LHR (London, England)"){
+            var lat = 51.5033;
+            var lon = -0.1195;
+            var city = '%23london AND %23layover'
+         }
+         if(req.body.place =="DBX (Dubai, UAE)"){
+            var lat = 25.1972;
+            var lon = 55.2744;
+            var city = '%23dubai AND %23layover'
+         }
+         if(req.body.place =="HND (Tokyo, Japan)"){
+            var lat = 35.6895;
+            var lon = 139.6917;
+            var city = '%23tokyo AND %23layover'
+         }
    		// var params = {
    		// 	q: '%23layover AND %23london',
    		// 	count: 50
@@ -29,8 +50,8 @@ module.exports = (function() {
          // console.log(nearBySearch())
          // console.log(config)
          var parameters = {
-            location: [40.7127, -74.0059],
-            keyword: "doctor",
+            location: [lat, lon],
+            type: "tourism",
             radius: 500
 
          };
@@ -40,7 +61,7 @@ module.exports = (function() {
             // console.log(response)
             x = response
             var params = {
-            q: '%23layover AND %23london',
+            q: city,
             count: 50
          }
          T.get('search/tweets', params, gotData)
@@ -52,7 +73,7 @@ module.exports = (function() {
             // console.log(y)
             res.json(y)
          }
-         console.log("in getTweet in backend controller")
+         // console.log("in getTweet in backend controller")
             
          });
       
