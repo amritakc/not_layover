@@ -1,0 +1,50 @@
+<div ng-controller="usersController">
+			<div ng-show="!show_registration">
+				<h1>Login</h1>
+				<form role="form">
+					<div class="form-group">
+						<label for="username">Username:</label>
+			    		<input type="text" class="form-control" ng-model="login.username">
+			  		</div>
+			  		<div class="form-group">
+						<label for="password">Password:</label>
+			    		<input type="password" class="form-control" ng-model="login.password">
+			  		</div>
+			  		<button type="submit" class="btn btn-primary" ng-click="loginUser()">Login</button>
+			  </form>
+			</div>
+
+			<div ng-hide="!show_registration">
+				<h1>Register</h1>
+			  	<form role="form">
+			  		<div class="form-group">
+						<label for="username">Username:</label>
+			    		<input type="username" class="form-control" ng-model="newUser.username">
+			  		</div>
+					<div class="form-group">
+						<label for="email">Email Address:</label>
+			    		<input type="email" class="form-control" ng-model="newUser.email">
+			  		</div>
+			  		<div class="form-group">
+						<label for="password">Password:</label>
+			    		<input type="password" class="form-control" ng-model="newUser.password">
+			  		</div>
+			  		<div class="form-group">
+						<label for="confirm_password">Confirm Password:</label>
+			    		<input type="password" class="form-control" ng-model="newUser.confirm_password">
+			  		</div>
+			  		<button type="submit" class="btn btn-primary" ng-click="registerUser()">Register</button>
+			  	</form>
+			</div>
+
+	
+
+			<a style="cursor:pointer;" ng-click="show_registration = !show_registration"><span ng-if="!show_registration">Create Account</span><span ng-if="show_registration">Login</span></a>
+
+			<div ng-show="error" class="alert alert-danger row">
+				<span ng-if="!error.message">{{ error }}</span>
+				<span>{{ error.message }}</span>
+			</div>
+
+</div>
+

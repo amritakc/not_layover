@@ -40,6 +40,25 @@
 	    		return factory;
 	    	}) 
 
+	    	myAppDB.factory('userFactory',function ($http){
+	    	  var factory = {};
+			  
+			  factory.login = function(info){
+			    return $http.post('/login', info).success(function(data){
+
+			    });
+			  };
+
+			  factory.register = function(info){
+			  	// console.log(info)
+			    return $http.post('/register', info).success(function(data){
+
+			    });
+			  };	    		
+	 		
+	    		return factory;
+	    	})	    	
+
 	    	myAppDB.controller('tweetsController', function($scope, tweetFactory){
 	    		$scope.tweets = [];
 
@@ -51,7 +70,44 @@
 	    				// console.log($scope.tweets.twitter.statuses[0].user)
 	    			})
 	    		}
+
 	   	 	})
+
+	    	myAppDB.controller('usersController', function($scope, tweetFactory, $location, userFactory){
+	    		  $scope.user = {};
+				  $scope.loggedIn = false;
+				  $scope.show_registration = false;
+
+				  $scope.registerUser = function(){
+				  	console.log("in usersController resgisterUser method")
+				    userFactory.register($scope.new_user).error(function(error){
+				      if (typeof error === 'string'){
+				        $scope.error = "Your username/email already exists.";
+				        $scope.newUser.password = "";
+				        $scope.newUser.password_confirm = "";
+				      }
+				      else{
+				        $scope.error = error;
+				        $scope.newUser.password = "";
+				        $scope.newUser.password_confirm = "";
+				      }
+				    }).then(function(){
+				      $location.path('/');
+				    });
+				  };
+
+
+				  $scope.loginUser = function(){
+				    userFactory.login($scope.login_user).error(function(error){
+				      $scope.error = error;
+				    }).then(function(){
+				      $location.path('/');
+				    });
+				  };
+				})
+	
+	   	 	
+
 
 	    </script>
 	</head>
