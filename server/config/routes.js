@@ -8,4 +8,10 @@ module.exports = function(app){
 	app.get('/places', function(req,res){
 		places.findPlace(req,res)
 	})
+	app.post('/register', function(req, res, next){
+		user.create(req,res, next)
+	})
+	app.post('/login', function(req, res, next){
+	user.show(req,res, next)
+	})
 };
