@@ -1,5 +1,6 @@
 var tweets = require('./../controllers/tweets.js')
 var places = require('./../controllers/places.js')
+var users = require('./../controllers/users.js')
 
 module.exports = function(app){
 	app.post('/tweets', function(req,res){
@@ -9,9 +10,9 @@ module.exports = function(app){
 		places.findPlace(req,res)
 	})
 	app.post('/register', function(req, res, next){
-		user.create(req,res, next)
+		users.create(req,res, next)
 	})
-	app.post('/login', function(req, res, next){
-	user.show(req,res, next)
+	app.post('/login ', function(req, res, next){
+		users.show(req,res, next)
 	})
 };
