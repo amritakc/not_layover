@@ -40,21 +40,25 @@
 	    		return factory;
 	    	}) 
 
-	    	myAppDB.factory('userFactory',function ($http){
+	    	myAppDB.factory('userFactory',function ($http, $window){
 	    	  var factory = {};
 			  
 			  factory.login = function(info){
 			    return $http.post('/login', info).success(function(data){
-
 			    });
 			  };
 
-			  factory.register = function(info){
-			  	// console.log(info)
-			    return $http.post('/register', info).success(function(data){
-
+			  factory.register = function(info, callback){
+			  	console.log(info)
+			    $http.post('/register', info).success(function(data){
+			    	console.log(data)
+			    	callback(data)
+			    	
 			    });
-			  };	    		
+			  };
+			  factory.saveToken = function (token){
+   		 		$window.localStorage['soc'] = token;
+  			};	    		
 	 		
 	    		return factory;
 	    	})	    	
@@ -80,20 +84,32 @@
 
 				  $scope.registerUser = function(){
 				  	console.log("in usersController resgisterUser method")
-				    userFactory.register($scope.new_user).error(function(error){
-				      if (typeof error === 'string'){
-				        $scope.error = "Your username/email already exists.";
+				    userFactory.register($scope.newUser, function(error){
+				    	console.log(error)
+				    	if(error === "Please complete all fields"){
+				    		$scope.error = error
+				    		$scope.newUser.password = "";
+				        	$scope.newUser.password2 = "";
+				    	}
+				    	else if(error === "Passwords do not match"){
+				    		$scope.error = error
+				    		$scope.newUser.password = "";
+				        	$scope.newUser.password2 = "";
+				    	}
+				    	else if(error === "User already exists"){
+				    		$scope.error = error
+				    		$scope.newUser.password = "";
+				        	$scope.newUser.password2 = "";				    		
+				    	}
+				      	else {
+				        // $scope.error = error;
 				        $scope.newUser.password = "";
-				        $scope.newUser.password_confirm = "";
+				        $scope.newUser.password2= "";
+				        userFactory.saveToken(error.token);
+				        $location.path('/')
 				      }
-				      else{
-				        $scope.error = error;
-				        $scope.newUser.password = "";
-				        $scope.newUser.password_confirm = "";
-				      }
-				    }).then(function(){
-				      $location.path('/');
-				    });
+				 
+				     })
 				  };
 
 
