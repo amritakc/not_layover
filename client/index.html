@@ -43,8 +43,10 @@
 	    	myAppDB.factory('userFactory',function ($http, $window){
 	    	  var factory = {};
 			  
-			  factory.login = function(info){
-			    return $http.post('/login', info).success(function(data){
+			  factory.login = function(info, callback){
+			  	console.log(info)
+			    $http.post('/login', info).success(function(data){
+			    	callback(data)
 			    });
 			  };
 
@@ -114,12 +116,21 @@
 
 
 				  $scope.loginUser = function(){
-				    userFactory.login($scope.login_user).error(function(error){
-				      $scope.error = error;
-				    }).then(function(){
-				      $location.path('/');
+				  	console.log($scope.login)
+				    userFactory.login($scope.login, function(error){
+				    	if(error === "Incorrect username/password"){
+				      		$scope.error = error;
+				      	}
+				      	else if(error === "Please complete both fields"){
+				      		$scope.error = error
+				      	}
+				      	else{
+							userFactory.saveToken(error.token);
+							$location.path('/')
+				      	}
 				    });
 				  };
+
 				})
 	
 	   	 	
