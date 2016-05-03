@@ -6,6 +6,7 @@ var Twit = require('twit');
 var config = require('../../config_twitter.js')
 var T = new Twit(config)
 
+
 var Googleplaces = require('googleplaces');
 var config = require('../../config_googleplaces.js')
 // var P = new Googleplaces(config)
@@ -53,7 +54,6 @@ module.exports = (function() {
             location: [lat, lon],
             type: "tourism",
             radius: 500
-
          };
 
          nearBySearch(parameters, function(error, response) {

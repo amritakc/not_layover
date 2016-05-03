@@ -6,12 +6,7 @@
 			<form id = "form">
 				<div class="form-group">
 				  <label for="place">Select Airport:</label>
-				  <select class="form-control" id="sel1" ng-model = "newTweet.place">
-				    <option>JFK (New York City, USA)</option>
-				    <option>LHR (London, England)</option>
-				    <option>DBX (Dubai, UAE)</option>
-				    <option>HND (Tokyo, Japan)</option>
-				  </select>
+				  <input type = "text" class="form-control" id="place" ng-model = "newTweet.place">
 				</div>
 			  <button type="submit" class="btn" ng-Click = "addTweets()">Find</button>
 		</form>
