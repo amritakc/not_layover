@@ -2,4 +2,5 @@ node_modules/
 config_twitter.js
 config_googleplaces.js
 config_yelp.js
+config_geocode.js
 twit.txt
