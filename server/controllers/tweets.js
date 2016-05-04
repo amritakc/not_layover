@@ -38,8 +38,8 @@ module.exports = (function() {
          // console.log(lon)
          // console.log(c)
          // var city = '%23'+c+' AND %23layover'
-         var city = "%23layover"
-         // console.log(city, "city")
+         var city = "%23"+c+" AND %23layover"
+         console.log(city, "city")
          // if(req.body.place =="JFK (New York City, USA)"){
          //    var lat = 40.7484;
          //    var lon = -73.9857;
