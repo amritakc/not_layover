@@ -19,6 +19,7 @@ var config_geocoder = require('../../config_geocode.js')
 module.exports = (function() {
  return {
    getTweet: function(req, res) {
+      // geocoding airport in latitude and longitude
       geocoder.geocode(req.body.place, function ( err, data ) {
          console.log(data.results[0].geometry.location.lat)
          lat = data.results[0].geometry.location.lat
@@ -32,6 +33,7 @@ module.exports = (function() {
    			q: city,
    			count: 50
    		}
+         // google search for nearby locations from airport
          var assert = require("assert")
          var NearBySearch = require('googleplaces/lib/NearBySearch');
          var nearBySearch = new NearBySearch(config_googleplaces.api_key, config_googleplaces.outputFormat);
@@ -47,6 +49,7 @@ module.exports = (function() {
             q: city,
             count: 50
          }
+         // tweets referrng to layouts and airport
          T.get('search/tweets', params, gotData)
          function gotData(err, data, respone){
             // console.log(x)
